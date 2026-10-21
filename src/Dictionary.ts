@@ -48,4 +48,45 @@ export class Dictionary {
         }
         return this.walk(prefix) !== undefined;
     }
+
+    search(pattern: string): boolean {
+        // 連續的 * 等同一個 *，先合併以減少狀態數
+        const p = pattern.replace(/\*+/g, "*");
+        // 記錄已確認失敗的 (node, index)，同一個狀態只搜尋一次
+        const failed = new Map<TrieNode, Set<number>>();
+
+        const dfs = (node: TrieNode, index: number): boolean => {
+            if (index === p.length) return node.end;
+            if (failed.get(node)?.has(index)) return false;
+
+            const char = p[index];
+            let found = false;
+
+            if (char === "*") {
+                // * 匹配零個字元：跳過 *；匹配一個以上：吃掉一個字元，* 留在原位
+                found = dfs(node, index + 1);
+                for (const child of node.next.values()) {
+                    if (found) break;
+                    found = dfs(child, index);
+                }
+            } else if (char === "?") {
+                for (const child of node.next.values()) {
+                    if (found) break;
+                    found = dfs(child, index + 1);
+                }
+            } else {
+                const child = node.next.get(char);
+                found = child !== undefined && dfs(child, index + 1);
+            }
+
+            if (!found) {
+                let set = failed.get(node);
+                if (!set) failed.set(node, (set = new Set()));
+                set.add(index);
+            }
+            return found;
+        };
+
+        return dfs(this.root, 0);
+    }
 }
