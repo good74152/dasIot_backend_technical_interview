@@ -8,3 +8,8 @@ dictionary.setup(["cat", "car", "bar"]);
 console.log(dictionary.contains("cat")); // true
 console.log(dictionary.contains("ca"));  // false
 console.log(dictionary.contains("bat")); // false
+
+// Part B - Prefix Search
+console.log(dictionary.startsWith("ca")); // true
+console.log(dictionary.startsWith("ba")); // true
+console.log(dictionary.startsWith("cr")); // false
