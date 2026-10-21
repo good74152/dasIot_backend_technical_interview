@@ -13,3 +13,10 @@ console.log(dictionary.contains("bat")); // false
 console.log(dictionary.startsWith("ca")); // true
 console.log(dictionary.startsWith("ba")); // true
 console.log(dictionary.startsWith("cr")); // false
+
+// Part C - Wildcard Search
+console.log(dictionary.search("c?t")); // true
+console.log(dictionary.search("*at")); // true
+console.log(dictionary.search("ca*")); // true
+console.log(dictionary.search("cr*")); // false
+console.log(dictionary.search("*"));   // true
