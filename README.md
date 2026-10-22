@@ -13,8 +13,9 @@ DasIoT Backend Technical Interview 的解答。
 
 ```
 .
-├── src/     # 解答程式碼
-├── test/    # 單元測試
+├── src/        # Exercise 1 程式碼
+├── test/       # Exercise 1 單元測試
+├── exercise2/  # Exercise 2 系統設計
 ├── package.json
 └── tsconfig.json
 ```
@@ -48,6 +49,7 @@ npm run typecheck
 ## 目錄
 
 - [Exercise 1 - In-Memory Dictionary](#exercise-1---in-memory-dictionary)
+- [Exercise 2 - Distributed Document Search Platform（系統設計）](exercise2/README.md)
 
 ## Exercise 1 - In-Memory Dictionary
 
